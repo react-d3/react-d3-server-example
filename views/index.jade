@@ -3,9 +3,4 @@ extends layout
 block content
   h1= title
   div(id='blank-point')!= markup
-  //- script(src='https://fb.me/react-0.14.0.js')
-    script(src='https://fb.me/react-dom-0.14.0.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
-  script(id="init-state", type="text/jsx")=state
-  //- script(src='/javascripts/point.jsx', type='text/babel')
   script(src="/javascripts/point.js")

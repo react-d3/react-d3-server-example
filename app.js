@@ -11,16 +11,14 @@ var fs = require("fs");
 
 var routes = require('./routes/index');
 
-//var React = require('react');
-//var ReactDOM = require('react-dom');
-var topojson = require('topojson');
-var d3 = require('d3');
+// react d3
 var React = require('react');
 var ReactD3Map = React.createFactory(require('react-d3-map').Map);
-var app = express();
 var uk = require('./public/data/uk.json');
+var topojson = require('topojson');
 var data = topojson.feature(uk, uk.objects.places);
 
+var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -47,8 +45,7 @@ app.get('/', function(req, res, next) {
 
   var markup = ReactDOMServer.renderToString(ReactD3Map(props));
   res.render('index', {
-    markup: markup,
-    state: JSON.stringify(props)
+    markup: markup
   });
 });
 
