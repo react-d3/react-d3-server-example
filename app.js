@@ -83,7 +83,7 @@ app.get('/basic', function(req, res, next) {
   var markup = ReactDOMServer.renderToString(
     Chart({
       width: 600,
-      height: 300,
+      height: 400,
       chartSeries: chartSeries
     }, LineChart({
       width: 600,
@@ -143,7 +143,7 @@ app.get('/zoom', function(req, res, next) {
   var markup = ReactDOMServer.renderToString(
     LineZoom({
       width: 600,
-      height: 300,
+      height: 400,
       chartSeries: chartSeries,
       x: x,
       data: user,
@@ -168,16 +168,16 @@ app.get('/brush', function(req, res, next) {
     ],
     x = function(d) {
       return d.index;
-    }
+    };
 
   var markup = ReactDOMServer.renderToString(
     LineBrush({
       width: 600,
-      height: 300,
+      height: 400,
       chartSeries: chartSeries,
       x: x,
       data: user,
-      brushheight: 100,
+      brushHeight: 100,
       xLabel: 'test'
     })
   );
