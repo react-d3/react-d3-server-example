@@ -13,13 +13,14 @@ var routes = require('./routes/index');
 // react d3
 var React = require('react');
 
-var ReactD3Map = React.createFactory(require('react-d3-map').Map);
+var ReactD3Map = require('react-d3-map').Map;
 var ReactD3Core = require('react-d3-core');
 var ReactD3Basic = require('react-d3-basic');
 var ReactD3Tooltip = require('react-d3-tooltip');
 var ReactD3Zoom = require('react-d3-zoom');
 var ReactD3Brush = require('react-d3-brush');
 
+var Map = React.createFactory(ReactD3Map);
 var Chart = React.createFactory(ReactD3Core.Chart);
 var LineChart = React.createFactory(ReactD3Basic.LineChart);
 var LineTooltip = React.createFactory(ReactD3Tooltip.LineTooltip);
@@ -56,7 +57,7 @@ app.get('/', function(req, res, next) {
     data: data
   };
 
-  var markup = ReactDOMServer.renderToString(ReactD3Map(props));
+  var markup = ReactDOMServer.renderToString(Map(props));
   res.render('index', {
     markup: markup
   });
