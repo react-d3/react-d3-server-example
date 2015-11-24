@@ -184,10 +184,10 @@ app.get('/brush', function(req, res, next) {
 
 **client**
 
-build jsx by webpack, for example, the map `point.jsx`: 
+build jsx by webpack, for example, the map `point.jsx`:
 
 
-```
+```js
 "use strict";
 
 var React = require('react');
@@ -214,7 +214,7 @@ var css= require('./css/polygon.css');
   };
 
   ReactDOM.render(
-    ReactD3Map(props), 
+    ReactD3Map(props),
     document.getElementById('blank-point')
   );
 
@@ -223,6 +223,6 @@ var css= require('./css/polygon.css');
 
 then, include the output js file to jade.
 
-```
+```jade
 script(src="/javascripts/point.js")
 ```
