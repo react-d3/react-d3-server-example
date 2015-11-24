@@ -1,11 +1,13 @@
-# react-d3-map-server-example
-A simple example of server-side rendering with react-d3-map.
+# react-d3-server-example
+A simple example of server-side rendering with react-d3.
 
 ## Run
 
 ```
 $ babel-node ./bin/www
 ```
+
+## react-d3-map
 
 **server**
 
