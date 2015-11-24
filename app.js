@@ -7,14 +7,27 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ReactDOMServer = require('react-dom/server');
-var fs = require("fs");
 
 var routes = require('./routes/index');
 
 // react d3
 var React = require('react');
+
 var ReactD3Map = React.createFactory(require('react-d3-map').Map);
+var ReactD3Core = require('react-d3-core');
+var ReactD3Basic = require('react-d3-basic');
+var ReactD3Tooltip = require('react-d3-tooltip');
+var ReactD3Zoom = require('react-d3-zoom');
+var ReactD3Brush = require('react-d3-brush');
+
+var Chart = React.createFactory(ReactD3Core.Chart);
+var LineChart = React.createFactory(ReactD3Basic.LineChart);
+var LineTooltip = React.createFactory(ReactD3Tooltip.LineTooltip);
+var LineZoom = React.createFactory(ReactD3Zoom.LineZoom);
+var LineBrush = React.createFactory(ReactD3Brush.LineBrush);
+
 var uk = require('./public/data/uk.json');
+var user = require('./public/data/user.json');
 var topojson = require('topojson');
 var data = topojson.feature(uk, uk.objects.places);
 
@@ -45,6 +58,131 @@ app.get('/', function(req, res, next) {
 
   var markup = ReactDOMServer.renderToString(ReactD3Map(props));
   res.render('index', {
+    markup: markup
+  });
+});
+
+app.get('/basic', function(req, res, next) {
+
+  var chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e',
+        style: {
+          "stroke-width": 2,
+          "stroke-opacity": .2,
+          "fill-opacity": .2
+        }
+      }
+    ],
+    x = function(d) {
+      return d.index;
+    }
+
+  var markup = ReactDOMServer.renderToString(
+    Chart({
+      width: 600,
+      height: 300,
+      chartSeries: chartSeries
+    }, LineChart({
+      width: 600,
+      height: 300,
+      data: user,
+      chartSeries: chartSeries,
+      x: x
+    }))
+  );
+
+  res.render('basic', {
+    markup: markup
+  });
+});
+
+app.get('/tooltip', function(req, res, next) {
+
+  var chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e'
+      }
+    ],
+    x = function(d) {
+      return d.index;
+    }
+
+  var markup = ReactDOMServer.renderToString(
+    LineTooltip({
+      width: 600,
+      height: 300,
+      chartSeries: chartSeries,
+      x: x,
+      data: user
+    })
+  );
+
+  res.render('tooltip', {
+    markup: markup
+  });
+});
+
+app.get('/zoom', function(req, res, next) {
+
+  var chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e'
+      }
+    ],
+    x = function(d) {
+      return d.index;
+    }
+
+  var markup = ReactDOMServer.renderToString(
+    LineZoom({
+      width: 600,
+      height: 300,
+      chartSeries: chartSeries,
+      x: x,
+      data: user,
+      zoomX: false,
+      zoomY: true
+    })
+  );
+
+  res.render('zoom', {
+    markup: markup
+  });
+});
+
+app.get('/brush', function(req, res, next) {
+
+  var chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e'
+      }
+    ],
+    x = function(d) {
+      return d.index;
+    }
+
+  var markup = ReactDOMServer.renderToString(
+    LineBrush({
+      width: 600,
+      height: 300,
+      chartSeries: chartSeries,
+      x: x,
+      data: user,
+      brushheight: 100,
+      xLabel: 'test'
+    })
+  );
+
+  res.render('brush', {
     markup: markup
   });
 });
