@@ -7,7 +7,7 @@ A simple example of server-side rendering with react-d3.
 $ babel-node ./bin/www
 ```
 
-## react-d3-map
+## Example
 
 **server**
 
@@ -184,7 +184,7 @@ app.get('/brush', function(req, res, next) {
 
 **client**
 
-build jsx by webpack, for example, the map point jsx: 
+build jsx by webpack, for example, the map `point.jsx`: 
 
 
 ```
