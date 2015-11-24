@@ -84,7 +84,7 @@ app.get('/basic', function(req, res, next) {
   var markup = ReactDOMServer.renderToString(
     Chart({
       width: 600,
-      height: 400,
+      height: 300,
       chartSeries: chartSeries
     }, LineChart({
       width: 600,
